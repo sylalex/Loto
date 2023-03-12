@@ -60,35 +60,36 @@ class Ticket:
         print('-' * 30)
 
 
-comp_ticket = Ticket()
-comp_ticket.name = 'Компьютер'
-user_ticket = Ticket()
-user_ticket.name = 'Пользователь'
-bag = [i for i in range(1, 91)]
-while True:
-    comp_ticket.print()
-    user_ticket.print()
-    number = random.choice(bag)
-    bag.remove(number)
-    print('Выпал номер:', number)
-    print('1. Зачеркнуть')
-    print('2. Продолжить')
-    choise = int(input('Выберите пункт: '))
-    if choise == 1:
-        comp_ticket.remove(number)
-        user_ticket.remove(number)
-        if not user_ticket.is_game:
-            print('Цифры на карточке нет. Вы проиграли и игра закончилась')
+if __name__ == '__main__':
+    comp_ticket = Ticket()
+    comp_ticket.name = 'Компьютер'
+    user_ticket = Ticket()
+    user_ticket.name = 'Пользователь'
+    bag = [i for i in range(1, 91)]
+    while True:
+        comp_ticket.print()
+        user_ticket.print()
+        number = random.choice(bag)
+        bag.remove(number)
+        print('Выпал номер:', number)
+        print('1. Зачеркнуть')
+        print('2. Продолжить')
+        choise = int(input('Выберите пункт: '))
+        if choise == 1:
+            comp_ticket.remove(number)
+            user_ticket.remove(number)
+            if not user_ticket.is_game:
+                print('Цифры на карточке нет. Вы проиграли и игра закончилась')
+                break
+        elif choise == 2:
+            comp_ticket.remove(number)
+            user_ticket.remove(number)
+            if user_ticket.is_game:
+                print('Цифра есть на карточке. Вы проиграли и игра закончилась')
+                break
+        if len(comp_ticket.tck[0] + comp_ticket.tck[1] + comp_ticket.tck[2]) == 0:
+            print('Компьютер выиграл.')
             break
-    elif choise == 2:
-        comp_ticket.remove(number)
-        user_ticket.remove(number)
-        if user_ticket.is_game:
-            print('Цифра есть на карточке. Вы проиграли и игра закончилась')
+        if len(user_ticket.tck[0] + user_ticket.tck[1] + user_ticket.tck[2]) == 0:
+            print('Вы выиграли.')
             break
-    if len(comp_ticket.tck[0] + comp_ticket.tck[1] + comp_ticket.tck[2]) == 0:
-        print('Компьютер выиграл.')
-        break
-    if len(user_ticket.tck[0] + user_ticket.tck[1] + user_ticket.tck[2]) == 0:
-        print('Вы выиграли.')
-        break
