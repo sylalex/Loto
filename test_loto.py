@@ -14,3 +14,7 @@ class TestLoto:
     def test_tck(self):
         ticket = Ticket()
         assert len(ticket.tck) == 3
+
+    def test_len(self):
+        ticket = Ticket()
+        assert len(ticket) == 15
