@@ -42,7 +42,7 @@ class Ticket:
                 self.is_game = True
                 break
 
-    def print(self):
+    def __str__(self):
         print(self.name)
         print('-' * 30)
 
@@ -58,6 +58,13 @@ class Ticket:
                 j = n + 1
             print()
         print('-' * 30)
+        return ''
+
+    def __eq__(self, other):
+        return len(self.tck[0] + self.tck[1] + self.tck[2]) == 0
+
+    def __len__(self):
+        return len(self.tck[0] + self.tck[1] + self.tck[2])
 
 
 if __name__ == '__main__':
@@ -67,8 +74,8 @@ if __name__ == '__main__':
     user_ticket.name = 'Пользователь'
     bag = [i for i in range(1, 91)]
     while True:
-        comp_ticket.print()
-        user_ticket.print()
+        print(comp_ticket)
+        print(user_ticket)
         number = random.choice(bag)
         bag.remove(number)
         print('Выпал номер:', number)
@@ -87,9 +94,9 @@ if __name__ == '__main__':
             if user_ticket.is_game:
                 print('Цифра есть на карточке. Вы проиграли и игра закончилась')
                 break
-        if len(comp_ticket.tck[0] + comp_ticket.tck[1] + comp_ticket.tck[2]) == 0:
+        if comp_ticket == 0:
             print('Компьютер выиграл.')
             break
-        if len(user_ticket.tck[0] + user_ticket.tck[1] + user_ticket.tck[2]) == 0:
+        if user_ticket == 0:
             print('Вы выиграли.')
             break
